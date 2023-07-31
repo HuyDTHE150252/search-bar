@@ -1029,3 +1029,7 @@ legend {
     width: 100%;
   }
 }
+
+.card {
+    margin: 10px;
+}

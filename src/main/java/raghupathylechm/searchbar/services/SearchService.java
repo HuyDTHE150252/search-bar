@@ -29,6 +29,13 @@ public class SearchService {
                             || wine.getRegion_of_production().toLowerCase().contains(lowerCaseKeyWord)
                             || wine.getQuantity().toString().toLowerCase().equals(lowerCaseKeyWord)
                             || wine.getVintage().toString().toLowerCase().equals(lowerCaseKeyWord)
+                            || wine.getInboundList().getT_cartons().toString().toLowerCase().contains(lowerCaseKeyWord)
+                            || wine.getInboundList().getPermit_no().toLowerCase().contains(lowerCaseKeyWord)
+                            || wine.getInboundList().getT_quantity().toString().toLowerCase().contains(lowerCaseKeyWord)
+                            || wine.getInboundList().getImporter().toLowerCase().contains(lowerCaseKeyWord)
+                            || wine.getInboundList().getHandling_agent().toLowerCase().contains(lowerCaseKeyWord)
+                            || wine.getInboundList().getExporter().toLowerCase().contains(lowerCaseKeyWord)
+                            && wine.getInboundList().getStatus_completed()
                             && wine.getStatus_completed()
                     )
                     .map(wine -> {

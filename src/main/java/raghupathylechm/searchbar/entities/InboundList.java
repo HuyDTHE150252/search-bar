@@ -3,12 +3,9 @@ package raghupathylechm.searchbar.entities;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 public class InboundList {
@@ -26,8 +23,8 @@ public class InboundList {
 	private Integer t_cartons;
 	private Integer t_quantity;
 	private Boolean status_completed;
-	
-	@OneToMany(mappedBy="inboundList", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="inboundList", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+	@JsonBackReference
 	private List<WineLabel> winelabel;
 	
 	public InboundList(Integer id, Date arrival_date, Date departure_date, String exporter, String handling_agent,

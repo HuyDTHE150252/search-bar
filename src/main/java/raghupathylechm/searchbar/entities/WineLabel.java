@@ -3,13 +3,8 @@ package raghupathylechm.searchbar.entities;
 import java.util.Random;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "wine_label")
@@ -29,8 +24,9 @@ public class WineLabel {
 	private Integer quantity;
 	private Boolean status_completed;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="inboundList_id", nullable=false)
+	@JsonManagedReference
 	private InboundList inboundList;
 	
 	public WineLabel(Integer id, Double alcohol_content, String bottle_information, String brand_name,

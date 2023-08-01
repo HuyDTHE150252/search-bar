@@ -11,7 +11,12 @@ import java.util.List;
 public class WineLabelService {
     @Autowired
     private WineLabelRepo _wineLabelRepo;
-    public List<WineLabel> getAll(){
+
+    public List<WineLabel> getAll() {
         return _wineLabelRepo.findAll();
+    }
+
+    public WineLabel getById(Integer id) {
+        return _wineLabelRepo.findById(id).orElse(new WineLabel());
     }
 }

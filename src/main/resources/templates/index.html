@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link href="css/main.css" rel="stylesheet"/>
 </head>
 <body>
@@ -62,24 +63,15 @@
         </div>
     </form>
 </div>
-<script src="js/extention/choices.js"></script>
-<script>
-    const choices = new Choices('[data-trigger]',
-    {
-      searchEnabled: false,
-      itemSelectText: '',
-    });
+<script src="js/jquery.min.js"></script>
 
-</script>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
 <script>
     let origin = location.origin;
     var searchDataEle = $("#searched-data");
-    $("#search").on("change",
+    $("#search").on("input",
         (query) => {
             searchDataEle.empty();
-            if(query.target.value !=== ""){
+            if(query.target.value !== ""){
                 $.get( `${origin}/api/search`,
                     {q:query.target.value},
                     function( data ) {
@@ -97,7 +89,7 @@
                                 cardText.classList.add("card-text");
                                 cardText.textContent = `Information: ${wine.bottle_information}`;
                             var cardDetailRedirect = document.createElement("a");
-                                cardDetailRedirect.href = ``;
+                                cardDetailRedirect.href = `${origin}/${wine.id}`;
                                 cardDetailRedirect.textContent = "View";
                                 cardDetailRedirect.classList.add("btn", "btn-primary");
                             cardBody.append(cardTitle,cardText,cardDetailRedirect);
